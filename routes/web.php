@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/** Halaman Utama */
+Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+/** Kategori mulai  */
+Route::get('kategori', [KategoriController::class, 'index'])->name('kategori');
+Route::post('kategori', [KategoriController::class, 'store'])->name('kategori.store');
+Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+/** Kategori selesai */
