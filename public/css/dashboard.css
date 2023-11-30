@@ -8967,7 +8967,8 @@ progress {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1;
-  color: #212529;
+  /* color: #212529; */
+  color: 'white';
   background-color: #2A3038;
   background-clip: padding-box;
   border: 1px solid #2c2e33;
@@ -8994,7 +8995,8 @@ progress {
   .jsgrid .jsgrid-table .jsgrid-filter-row select:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input:focus[type=number], .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .typeahead:focus,
   .tt-query:focus,
   .tt-hint:focus {
-    color: #212529;
+    /* color: #212529; */
+    color: 'white';
     background-color: #fff;
     border-color: #86b7fe;
     outline: 0;
@@ -9080,7 +9082,8 @@ progress {
   padding: 0.56rem 0;
   margin-bottom: 0;
   line-height: 1;
-  color: #212529;
+  /* color: #212529; */
+  color: 'white';
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0; }
@@ -9148,7 +9151,8 @@ textarea.form-control-lg {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  /* color: #212529; */
+  color: 'white';
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;

@@ -74,7 +74,7 @@
                 </div>
                 {{-- Modal Tambah Selesai --}}
                 <div class="table-responsive">
-                    <table class="table" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             {{-- <tr class="bg-primary text-light"> --}}
                             <tr>

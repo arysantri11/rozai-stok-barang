@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,10 @@ Route::post('kategori', [KategoriController::class, 'store'])->name('kategori.st
 Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 /** Kategori selesai */
+
+/** Barang mulai  */
+Route::get('barang', [BarangController::class, 'index'])->name('barang');
+Route::post('barang', [BarangController::class, 'store'])->name('barang.store');
+Route::put('barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+Route::delete('barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+/** Barang selesai */
