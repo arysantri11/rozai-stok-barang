@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BrgMasukController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
@@ -33,3 +34,10 @@ Route::post('barang', [BarangController::class, 'store'])->name('barang.store');
 Route::put('barang/{id}', [BarangController::class, 'update'])->name('barang.update');
 Route::delete('barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
 /** Barang selesai */
+
+/** Barang Masuk mulai  */
+Route::get('brg-masuk', [BrgMasukController::class, 'index'])->name('brg-masuk');
+Route::post('brg-masuk', [BrgMasukController::class, 'store'])->name('brg-masuk.store');
+Route::put('brg-masuk/{id}', [BrgMasukController::class, 'update'])->name('brg-masuk.update');
+Route::delete('brg-masuk/{id}', [BrgMasukController::class, 'destroy'])->name('brg-masuk.destroy');
+/** Barang Masuk selesai */

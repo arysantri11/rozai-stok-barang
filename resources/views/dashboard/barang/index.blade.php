@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="lokasi">Lokasi</label>
-                                        <textarea name="lokasi" class="form-control text-light" id="lokasi" cols="30" rows="10" placeholder="Lokasi">{{ old('harga_satuan') }}</textarea>
+                                        <textarea name="lokasi" class="form-control text-light" id="lokasi" cols="30" rows="10" placeholder="Lokasi">{{ old('lokasi') }}</textarea>
                                         
                                         @error('lokasi')
                                         <span class="text-danger">{{ $message }}</span>
@@ -122,6 +122,7 @@
                     </div>
                 </div>
                 {{-- Modal Tambah Selesai --}}
+                
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
