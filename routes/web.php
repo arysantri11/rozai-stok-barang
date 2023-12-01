@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BrgKeluarController;
 use App\Http\Controllers\BrgMasukController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\StokController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +43,14 @@ Route::post('brg-masuk', [BrgMasukController::class, 'store'])->name('brg-masuk.
 Route::put('brg-masuk/{id}', [BrgMasukController::class, 'update'])->name('brg-masuk.update');
 Route::delete('brg-masuk/{id}', [BrgMasukController::class, 'destroy'])->name('brg-masuk.destroy');
 /** Barang Masuk selesai */
+
+/** Barang Keluar mulai  */
+Route::get('brg-keluar', [BrgKeluarController::class, 'index'])->name('brg-keluar');
+Route::post('brg-keluar', [BrgKeluarController::class, 'store'])->name('brg-keluar.store');
+Route::put('brg-keluar/{id}', [BrgKeluarController::class, 'update'])->name('brg-keluar.update');
+Route::delete('brg-keluar/{id}', [BrgKeluarController::class, 'destroy'])->name('brg-keluar.destroy');
+/** Barang Keluar selesai */
+
+/** Barang Stok mulai  */
+Route::get('stok', [StokController::class, 'index'])->name('stok');
+/** Barang Stok selesai */

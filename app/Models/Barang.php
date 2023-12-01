@@ -20,6 +20,16 @@ class Barang extends Model
     {
         return $this->hasMany(BrgMasuk::class);
     }
+
+    public function brg_keluar()
+    {
+        return $this->hasMany(BrgKeluar::class);
+    }
+
+    public function stok()
+    {
+        return $this->hasMany(Stok::class);
+    }
     
     public function kategori()
     {

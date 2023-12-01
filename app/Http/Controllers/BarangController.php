@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Kategori;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -28,11 +29,14 @@ class BarangController extends Controller
     {
         // membuat validasi data yang di input user
         $validatedData = Validator::make($request->all(), [
+            'kode' => 'required|unique:barang',
             'nama' => 'required',
             'kategori_id' => 'required',
             'harga_satuan' => 'required',
             'satuan' => 'required',
         ], [
+            'kode.unique' => 'Kode tidak tersedia',
+            'kode.required' => 'Kode tidak boleh kosong',
             'nama.required' => 'Nama tidak boleh kosong',
             'kategori.required' => 'Pilih Kategori',
             'harga.required' => 'Harga tidak boleh kosong',
@@ -50,6 +54,7 @@ class BarangController extends Controller
         // Simpan data baru ke dalam database
         try {
             Barang::create([
+                "kode" => $request->kode,
                 "nama" => $request->nama,
                 "kategori_id" => $request->kategori_id,
                 "merk" => $request->merk,
@@ -57,6 +62,12 @@ class BarangController extends Controller
                 "harga_satuan" => (int) $request->harga_satuan,
                 "satuan" => $request->satuan,
                 "lokasi" => $request->lokasi,
+            ]);
+
+            $dataBarang = Barang::where('kode', $request->kode)->first();
+
+            Stok::create([
+                "barang_id" => $dataBarang->id,
             ]);
         } catch (\Throwable $th) {
             // redirect
@@ -98,6 +109,7 @@ class BarangController extends Controller
 
         // menyimpan perubahan data ke dalam database
         $dataBarang->update([
+            "kode" => $request->kode,
             "nama" => $request->nama,
             "kategori_id" => $request->kategori_id,
             "merk" => $request->merk,

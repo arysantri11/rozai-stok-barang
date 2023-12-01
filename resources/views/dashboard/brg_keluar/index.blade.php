@@ -31,7 +31,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4 class="card-title">Data Barang Masuk</h4>
+                        <h4 class="card-title">Data Barang Keluar</h4>
                     </div>
                     <div class="col text-end">
                         <a href="#" class="btn btn-success mb-2" data-toggle="modal" data-target="#modalTambah">Tambah</a>
@@ -48,11 +48,11 @@
                                 <a href="#" class="text-light text-decoration-none" data-dismiss="modal" aria-hidden="true">&times;</a>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('brg-masuk.store') }}" method="POST" autocomplete="off">
+                                <form action="{{ route('brg-keluar.store') }}" method="POST" autocomplete="off">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="barang">Barang<span class="text-danger">*</span></label>
-                                        <select class="form-control text-light" name="barang_id" id="barang" required>
+                                        <label for="barangAdd">Barang<span class="text-danger">*</span></label>
+                                        <select class="form-control text-light" name="barang_id" id="barangAdd" required>
                                             <option value="">-- Pilih --</option>
                                             @foreach ($dataBarang as $itemBarang)
                                             <option value="{{ $itemBarang->id }}">
@@ -66,8 +66,12 @@
                                         <input type="date" class="form-control text-light" name="tanggal" id="tgl" value="{{ old('tanggal') }}" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="jumlah">Jumlah<span class="text-danger">*</span></label>
-                                        <input type="number" min="1" class="form-control text-light" name="jumlah" id="jumlah" value="{{ old('jumlah') }}" placeholder="Jumlah" required>
+                                        <label for="jumlahAdd" id="labelJmlAdd">Jumlah<span class="text-danger">*</span></label>
+                                        <input type="number" min="0" class="form-control text-light" name="jumlah" id="jumlahAdd" value="{{ old('jumlah') }}" placeholder="Jumlah" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="penerima">Penerima<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control text-light" name="penerima" id="penerima" value="{{ old('penerima') }}" placeholder="Penerima" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="ket">Keterangan</label>
@@ -93,28 +97,26 @@
                                 <th class="text-center fw-bold" width="20px">No</th>
                                 <th class="fw-bold">Tanggal</th>
                                 <th class="fw-bold">Nama Barang</th>
-                                {{-- <th class="fw-bold">Kategori</th> --}}
                                 <th class="fw-bold">Harga</th>
                                 <th class="fw-bold">Jumlah</th>
                                 <th class="fw-bold">Total Harga</th>
-                                {{-- <th class="fw-bold">Keterangan</th> --}}
+                                <th class="fw-bold">Penerima</th>
                                 <th class="text-center fw-bold" width="80px">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 1 ?>
-                            @foreach ($dataBrgMasuk as $item)
+                            @foreach ($dataBrgKeluar as $item)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
                                 <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->barang->nama }}</td>
-                                {{-- <td>{{ $item->barang->kategori->nama }}</td> --}}
                                 <td>@money($item->barang->harga_satuan)</td>
                                 <td>{{ $item->jumlah }}</td>
                                 <td>@money($item->total_harga)</td>
-                                {{-- <td>{{ $item->ket }}</td> --}}
+                                <td>{{ $item->penerima }}</td>
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-warning btn-circle btn-sm mx-1" data-toggle="modal" data-target="#modalEdit{{ $item->id }}">Edit</a>
+                                    <a href="#" class="btn btn-edit btn-warning btn-circle btn-sm mx-1" data-toggle="modal" data-target="#modalEdit{{ $item->id }}" data-id="{{ $item->id }}" data-stok="{{ $item->barang->stok }}">Edit</a>
                                     <a href="#" class="btn btn-danger btn-circle btn-sm mx-1" data-toggle="modal" data-target="#modalDelete{{ $item->id }}">Delete</a>
                                 </td>
                             </tr>
@@ -128,12 +130,12 @@
                                             <a href="#" class="text-light text-decoration-none" data-dismiss="modal" aria-hidden="true">&times;</a>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('brg-masuk.update', $item->id) }}" method="POST" autocomplete="off">
+                                            <form action="{{ route('brg-keluar.update', $item->id) }}" method="POST" autocomplete="off">
                                                 @csrf
                                                 @method('PUT')
 
                                                 <div class="form-group">
-                                                    <label for="barang">Barang<span class="text-danger">*</span></label>
+                                                    <label for="barangEdit{{ $item->id }}">Barang<span class="text-danger">*</span></label>
                                                     <p>{{ $item->barang->nama.' ('.$item->barang->kategori->nama.')' }}</p>
                                                     <input type="hidden" name="barang_id" value="{{ $item->barang_id }}">
                                                 </div>
@@ -142,8 +144,12 @@
                                                     <input type="date" class="form-control text-light" name="tanggal" id="tgl" value="{{ $item->tanggal }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="jumlah">Jumlah<span class="text-danger">*</span></label>
-                                                    <input type="number" min="1" class="form-control text-light" name="jumlah" id="jumlah" value="{{ $item->jumlah }}" placeholder="Jumlah" required>
+                                                    <label for="jumlahEdit{{ $item->id }}" id="labelJmlEdit{{ $item->id }}">Jumlah<span class="text-danger">*</span></label>
+                                                    <input type="number" min="0" class="form-control text-light" name="jumlah" id="jumlahEdit{{ $item->id }}" value="{{ $item->jumlah }}" placeholder="Jumlah" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="penerima">Penerima<span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control text-light" name="penerima" id="penerima" value="{{ $item->penerima }}" placeholder="Penerima" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="ket">Keterangan</label>
@@ -172,7 +178,7 @@
                                             <a href="#" class="text-light text-decoration-none" data-dismiss="modal" aria-hidden="true">&times;</a>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('brg-masuk.destroy', $item->id) }}" method="POST" autocomplete="off">
+                                            <form action="{{ route('brg-keluar.destroy', $item->id) }}" method="POST" autocomplete="off">
                                                 @method('delete')
                                                 @csrf
         
@@ -200,6 +206,37 @@
     </div>
 </div>
 {{-- End Table --}}
+
+<script>
+    const inputBarang = document.getElementById('barangAdd');
+    const labelJumlah = document.getElementById('labelJmlAdd');
+    const inputJumlah = document.getElementById('jumlahAdd');
+    const dataBarang = {!! json_encode($dataBarang) !!};
+    // console.info(data);
+
+    inputBarang.addEventListener('change', () => {
+        if(inputBarang.value !== '') {
+            dataBarang.forEach(element => {
+                if(element.id == inputBarang.value) {
+                    const stok = element.stok[0].stok;
+                    labelJumlah.innerHTML = `Jumlah<span class="text-danger">*</span> (max ${stok})`;
+                    inputJumlah.max = stok;
+                    // console.info(stok);
+                }
+            });
+        }
+    });
+
+    const btnEdit = document.querySelectorAll('.btn-edit');
+    btnEdit.forEach(element => {
+        const inputJumlahEdit = document.getElementById(`jumlahEdit${element.dataset.id}`);
+        const labelJumlahEdit = document.getElementById(`labelJmlEdit${element.dataset.id}`);
+
+        const stokArr = JSON.parse(element.dataset.stok);
+        labelJumlahEdit.innerHTML = `Jumlah<span class="text-danger">*</span> (max ${stokArr[0].stok + parseInt(inputJumlahEdit.value)})`;
+        inputJumlahEdit.max = stokArr[0].stok + parseInt(inputJumlahEdit.value);
+    });
+</script>
 
 @endsection
 

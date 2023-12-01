@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('stok', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('name');
-            $table->string('password');
-            $table->string('role')->default('2'); // 1 = Operational Staff, 2 = Branch Office Service Manager
-            $table->rememberToken();
+            $table->foreignId('barang_id');
+            $table->integer('stok')->default(0);
+            $table->integer('total_harga')->default(0);
             $table->timestamps();
+
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('stok');
     }
 };

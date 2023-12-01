@@ -73,5 +73,14 @@
             </ul>
             </div>
         </li>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('/stok') }}">
+            <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+            </span>
+            <span class="menu-title">Stok Barang</span>
+            </a>
+        </li>
     </ul>
 </nav>

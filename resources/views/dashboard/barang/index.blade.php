@@ -15,11 +15,11 @@
 @endif
 
 <div class="page-header">
-    <h3 class="page-title"> Barang </h3>
+    <h3 class="page-title"> {{ $title }} </h3>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Barang</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
         </ol>
     </nav>
 </div>
@@ -60,6 +60,14 @@
                                         </select>
                                         
                                         @error('kategori_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="kodeBarang">Kode Barang<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control text-light" name="kode" id="kodeBarang" value="{{ old('kode') }}" placeholder="Kode" required>
+                                        
+                                        @error('kode')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -128,6 +136,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center fw-bold" width="20px">No</th>
+                                <th class="fw-bold">Kode</th>
                                 <th class="fw-bold">Nama</th>
                                 <th class="fw-bold">Kategori</th>
                                 <th class="fw-bold">Merk</th>
@@ -143,6 +152,7 @@
                             @foreach ($dataBarang as $item)
                             <tr>
                                 <td class="text-center">{{ $no++ }}</td>
+                                <td>{{ $item->kode }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->kategori->nama }}</td>
                                 <td>{{ $item->merk }}</td>
@@ -181,6 +191,11 @@
                                                     @error('kategori_id')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="kodeBarang">Kode Barang</label>
+                                                    <p>{{ $item->kode }}</p>
+                                                    <input type="hidden" name="kode" value="{{ $item->kode }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="namaBarang">Nama Barang<span class="text-danger">*</span></label>
