@@ -6,6 +6,7 @@ use App\Http\Controllers\BrgMasukController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,12 +45,12 @@ Route::put('brg-masuk/{id}', [BrgMasukController::class, 'update'])->name('brg-m
 Route::delete('brg-masuk/{id}', [BrgMasukController::class, 'destroy'])->name('brg-masuk.destroy');
 /** Barang Masuk selesai */
 
-/** Barang Keluar mulai  */
-Route::get('brg-keluar', [BrgKeluarController::class, 'index'])->name('brg-keluar');
-Route::post('brg-keluar', [BrgKeluarController::class, 'store'])->name('brg-keluar.store');
-Route::put('brg-keluar/{id}', [BrgKeluarController::class, 'update'])->name('brg-keluar.update');
-Route::delete('brg-keluar/{id}', [BrgKeluarController::class, 'destroy'])->name('brg-keluar.destroy');
-/** Barang Keluar selesai */
+/** User mulai  */
+Route::get('user', [UserController::class, 'index'])->name('user');
+Route::post('user', [UserController::class, 'store'])->name('user.store');
+Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+/** User selesai */
 
 /** Barang Stok mulai  */
 Route::get('stok', [StokController::class, 'index'])->name('stok');
