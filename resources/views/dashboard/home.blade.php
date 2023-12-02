@@ -70,7 +70,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Dashboard</h4>
-                <p style="font-size: 20px">Selamat datang <strong>Rozai</strong>, anda login sebagai <strong>Admin</strong></p>
+                <p style="font-size: 20px">Selamat datang <strong>{{ auth()->user()->name }}</strong>, anda login sebagai <strong>{{ (auth()->user()->role == "1")? 'Operational Staff' : 'Branch Office Service Manager' }}</strong></p>
             </div>
         </div>
     </div>

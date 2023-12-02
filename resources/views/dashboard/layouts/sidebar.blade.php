@@ -17,8 +17,8 @@
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
-                        <h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-                        <span>Gold Member</span>
+                        <h5 class="mb-0 font-weight-normal">{{ auth()->user()->name }}</h5>
+                        <span>{{ (auth()->user()->role == "1")? 'Operational Staff' : 'Branch Office Service Manager' }}</span>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,7 @@
             </a>
         </li>
 
+        @if (auth()->user()->role === '1')
         <li class="nav-item nav-category">
             <span class="nav-link">Operator</span>
         </li>
@@ -82,6 +83,7 @@
             </ul>
             </div>
         </li>
+        @endif
 
         <li class="nav-item nav-category">
             <span class="nav-link">Stok</span>
