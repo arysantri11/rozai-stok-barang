@@ -41,9 +41,18 @@
             <span class="nav-link">Operator</span>
         </li>
         <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('/user') }}">
+            <span class="menu-icon">
+                <i class="mdi mdi-account-multiple-outline"></i>
+            </span>
+            <span class="menu-title">User</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('/kategori') }}">
             <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
+                <i class="mdi mdi-view-grid"></i>
             </span>
             <span class="menu-title">Kategori</span>
             </a>
@@ -52,7 +61,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('/barang') }}">
             <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
+                <i class="mdi mdi-package"></i>
             </span>
             <span class="menu-title">Barang</span>
             </a>
@@ -74,10 +83,13 @@
             </div>
         </li>
 
+        <li class="nav-item nav-category">
+            <span class="nav-link">Stok</span>
+        </li>
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('/stok') }}">
             <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
+                <i class="mdi mdi-package-variant-closed"></i>
             </span>
             <span class="menu-title">Stok Barang</span>
             </a>
