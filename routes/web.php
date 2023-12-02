@@ -5,6 +5,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BrgKeluarController;
 use App\Http\Controllers\BrgMasukController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportDataController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
@@ -63,6 +64,10 @@ Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destr
 /** Barang Stok mulai  */
 Route::get('stok', [StokController::class, 'index'])->name('stok')->middleware('auth');
 /** Barang Stok selesai */
+
+/** Barang Export mulai  */
+Route::get('export-stok', [ExportDataController::class, 'stok'])->name('export.stok')->middleware('auth');
+/** Barang Export selesai */
 
 /** Login mulai  */
 Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('guest');

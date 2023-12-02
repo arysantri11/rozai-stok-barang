@@ -62,6 +62,7 @@
                         </tbody>
                     </table>
                 </div>
+                <a href="{{ route('export.stok') }}" class="btn btn-warning mt-3" target="_blank">Export</a>
             </div>
         </div>
     </div>
