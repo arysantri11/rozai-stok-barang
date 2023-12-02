@@ -23,7 +23,7 @@
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
                     <h6 class="p-3 mb-0">Profile</h6>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item preview-item" href="{{ url('/logout') }}">
+                    <a class="dropdown-item preview-item" data-toggle="modal" data-target="#modalLogout" href="#">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
                                 <i class="mdi mdi-logout text-danger"></i>
@@ -43,3 +43,25 @@
         
     </div>
 </nav>
+
+{{-- Modal Logout Mulai --}}
+<div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="ModalLabelLogout" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabelLogout">Pemberitahuan !</h5>
+                <a href="#" class="text-light text-decoration-none" data-dismiss="modal" aria-hidden="true">&times;</a>
+            </div>
+            <div class="modal-body">
+                <p>Yakin ingin keluar? </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                <a href="{{ url('/logout') }}" class="btn btn-danger">
+                    Ya
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Modal Logout Selesai --}}
